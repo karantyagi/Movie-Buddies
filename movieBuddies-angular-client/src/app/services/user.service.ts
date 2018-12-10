@@ -22,7 +22,7 @@ export class UserService {
   urlPremiumRevoke: string;
 
   constructor() {
-    let base;
+    let base = 'http://movie-buddies-server.us-east-2.elasticbeanstalk.com';
     if (!location.toString().includes('localhost')) {
       base = 'https://job-portal-server.herokuapp.com';
     } else {
