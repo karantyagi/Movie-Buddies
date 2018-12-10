@@ -1,4 +1,3 @@
-import { BrowserModule } from '@angular/platform-browser';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
@@ -17,6 +16,7 @@ import { GuestProfileComponent } from './components/guest-profile/guest-profile.
 import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 import { RegisterComponent } from './components/register/register.component';
 import {UserService} from './services/user.service';
+import {MovieListingService} from './services/movie-listing.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,8 @@ import {UserService} from './services/user.service';
     AppRoutingModule
   ],
   providers: [
-    UserService
+    UserService,
+    MovieListingService
   ],
   bootstrap: [AppComponent]
 })

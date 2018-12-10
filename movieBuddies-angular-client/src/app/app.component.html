@@ -19,7 +19,7 @@
       </li>
       <li class="nav-item my-1">
         <a class="btn btn-outline-secondary ml-3" [routerLinkActive]="['active']"
-           routerLink="/movie-list/{{' '}}/{{' '}}">Movies</a>
+           routerLink="/movie-list/1">Movies</a>
       </li>
 
       <li class="nav-item my-1">
@@ -31,7 +31,7 @@
       <li class="nav-item my-1">
         <a [hidden]="!(user != null && user.role === 'organizer')" class="btn btn-outline-primary
         font-weight-light ml-3"
-           [routerLinkActive]="['active']" routerLink="/profile-organizer" >Profile</a>
+           [routerLinkActive]="['active']" routerLink="/profile-host" >Profile</a>
       </li>
       <li class="nav-item my-1">
         <a [hidden]="!(user != null && user.role === 'guest')" class="btn btn-outline-primary
@@ -75,5 +75,6 @@
   </div>
 </nav>
 <div class="cont">
-  <router-outlet (activate)="sessionCheck()" ></router-outlet>
+  <router-outlet></router-outlet>
+  <!--<router-outlet (activate)="sessionCheck()" ></router-outlet>-->
 </div>
