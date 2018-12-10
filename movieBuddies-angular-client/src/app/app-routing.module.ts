@@ -8,6 +8,12 @@ import {LoginComponent} from './components/login/login.component';
 import {GuestProfileComponent} from './components/guest-profile/guest-profile.component';
 import {HostProfileComponent} from './components/host-profile/host-profile.component';
 import {AdminComponent} from './components/admin/admin.component';
+import {HostDashboardComponent} from './components/host-dashboard/host-dashboard.component';
+import {GuestDashboardComponent} from './components/guest-dashboard/guest-dashboard.component';
+import {UserDetailComponent} from './user-detail/user-detail.component';
+import {UserListComponent} from './user-list/user-list.component';
+import {EventComponent} from './event/event.component';
+import {EventDetailComponent} from './event-detail/event-detail.component';
 
 
 const routes: Routes = [
@@ -16,8 +22,16 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'admin', component: AdminComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'event-list', component: EventComponent},
+  {path: 'event/:hostId', component: EventComponent},
+  {path: 'event-list/event-detail/:eventId', component: EventDetailComponent},
   {path: 'profile-guest', component: GuestProfileComponent},
   {path: 'profile-host', component: HostProfileComponent},
+  {path: 'dashboard-guest', component: GuestDashboardComponent},
+  {path: 'dashboard-host', component: HostDashboardComponent},
+  {path: 'dashboard-host/:eventId', component: HostDashboardComponent},
+  {path: 'user-list', component: UserListComponent},
+  {path: 'user-list/user-detail/:userId', component: UserDetailComponent},
   {path: 'movie-list/:page' , component: MovieListComponent},
   {path: 'movie-list/:page/movie-detail/:movieId', component: MovieDetailComponent},
   // {path: 'movie-list/:location/:keyword', component: MovieListComponent},

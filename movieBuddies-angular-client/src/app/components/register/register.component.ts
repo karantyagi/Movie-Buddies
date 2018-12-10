@@ -14,23 +14,16 @@ export class RegisterComponent implements OnInit {
   verifyPassword: string;
   usernameExists: boolean;
   role = 'Guest';
-  successMsg: boolean;
   email: string;
 
-  constructor(private router: Router,
-              private service: UserService) {
+  constructor(private router: Router, private service: UserService) {
     this.usernameExists = false;
-    this.successMsg = false;
   }
 
 
   register(username, password, role, email) {
     let user;
-    if (role === 'Host') {
       user = {username, password, role, email};
-    } else {
-      user = {username, password, role};
-    }
     this.service
       .register(user)
       .then((res) => {
@@ -38,16 +31,18 @@ export class RegisterComponent implements OnInit {
           if (res.status === true) {
             if (role === 'Guest') {
               this.router.navigate(['profile-guest']);
-            } else {
-              this.successMsg = true;
+            }
+            else if (role === 'Host'){
+              this.router.navigate(['profile-host']);
+            }
+            else {
               this.usernameExists = false;
               this.role = 'Guest';
             }
-          } else {
-
+          }
+          else {
             this.usernameExists = true;
             this.role = 'Guest';
-            this.successMsg = false;
           }
         }
       );

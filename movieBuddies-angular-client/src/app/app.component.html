@@ -23,6 +23,11 @@
       </li>
 
       <li class="nav-item my-1">
+        <a class="btn btn-outline-secondary ml-3" [routerLinkActive]="['active']"
+           routerLink="/event-list">Events</a>
+      </li>
+
+      <li class="nav-item my-1">
 
         <a [hidden]="!(user != null && user.role === 'guest')" class="btn btn-outline-primary
         font-weight-light ml-3"
@@ -53,9 +58,14 @@
     </ul>
     <ul class="navbar-nav float-right">
       <li class="nav-item my-1">
-        <h5 [hidden]="user===null"class="text-primary my-1 mx-3"><i [hidden]="user===null" class="fa fa-user text-primary"></i>
-          {{user!=null && user.username}}</h5>
+        <span [hidden]="user===null" class="mx-1">
+          <span class="navbar-text" style="color: dimgrey;">
+           <i [hidden]="user===null" class="fa fa-user"> </i>
+        Logged in as : </span>
+          <span style="color: dimgrey; font-weight: bold">&nbsp;{{username}}</span>
+        </span>
       </li>
+
       <li class="nav-item my-1">
         <button [hidden]="user===null" class="btn btn-outline-primary ml-3" (click)="logout()"
                 type="button">Logout</button>

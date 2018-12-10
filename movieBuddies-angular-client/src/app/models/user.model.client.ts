@@ -10,3 +10,4 @@ export class User {
   requestStatus: string;
   premiumRequestStatus: string;
 }
+

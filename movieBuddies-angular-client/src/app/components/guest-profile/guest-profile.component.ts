@@ -7,7 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GuestProfileComponent implements OnInit {
 
+  updateMode = false;
+
   constructor() { }
+
+  startUpdateMode(){
+    this.updateMode = true;
+  }
+
+  cancelUpdateMode(){
+    this.updateMode = false;
+  }
 
   ngOnInit() {
   }

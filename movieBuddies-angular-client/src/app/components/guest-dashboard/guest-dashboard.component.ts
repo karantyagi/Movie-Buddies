@@ -7,7 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GuestDashboardComponent implements OnInit {
 
+  requestedMoviesView = false;
+
   constructor() { }
+
+  showRequestedMoviesList() {
+    this.requestedMoviesView = true;
+    console.log('Requested Movies view :', this.requestedMoviesView);
+  }
 
   ngOnInit() {
   }

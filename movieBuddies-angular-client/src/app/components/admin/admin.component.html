@@ -1,3 +1,111 @@
-<p>
-  admin works!
-</p>
+<div class="row navbar navbar-expand-lg  bg-dark text-light m-3" data-toggle="collapse" data-target="#pendingRec">
+  <div class="col">
+    <h3>Pending Recruiter List</h3>
+  </div>
+  <div class="col">
+    <i class="fa fa-angle-down fa-2x btn float-right"></i>
+  </div>
+</div>
+
+<div class="collapse" id="pendingRec" data-parent="admin">
+  <div *ngFor="let user of users" class="m-3">
+    <div class="row bg-white border shadow text-dark p-2 mx-3" data-toggle="collapse">
+      <div class="col">
+        <h5>{{user.username}}</h5>
+      </div>
+      <div class="col">
+        <button class="btn btn-success float-right ml-2" (click)="approveUser(user._id)">Approve</button>
+        <button class="btn btn-danger float-right" (click)="rejectUser(user._id)">Reject</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row navbar navbar-expand-lg  bg-dark text-light m-3" data-toggle="collapse" data-target="#pendingPremium">
+  <div class="col">
+    <h3>Pending Premium Job Seeker Request</h3>
+  </div>
+  <div class="col">
+    <i class="fa fa-angle-down fa-2x btn float-right"></i>
+  </div>
+</div>
+
+<div class="collapse" id="pendingPremium" data-parent="admin">
+  <div *ngFor="let user of allJobSeekers" class="m-3">
+    <div class="row bg-white border shadow text-dark p-2 mx-3" data-toggle="collapse">
+      <div class="col">
+        <h5>{{user.username}}</h5>
+      </div>
+      <div class="col">
+        <h5>{{user.premiumRequestStatus}}</h5>
+      </div>
+      <div class="col">
+        <button class="btn btn-success float-right ml-2" (click)="grantPremiumAccess(user._id)"
+                [hidden]="user.premiumRequestStatus !== 'Pending'">Approve
+        </button>
+        <button class="btn btn-danger float-right" (click)="revokePremiumAccess(user._id)"
+                [hidden]="user.premiumRequestStatus !== 'Verified'">Revoke
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row navbar navbar-expand-lg  bg-dark text-light m-3" data-toggle="collapse" data-target="#adminCreate">
+  <div class="col">
+    <h3>Add or Remove Admin User</h3>
+  </div>
+  <div class="col">
+    <i class="fa fa-angle-down fa-2x btn float-right"></i>
+  </div>
+</div>
+
+<div class="collapse" id="adminCreate" data-parent="adminCreate">
+  <div class="row m-3">
+    <div class="col">
+      <div class="alert alert-danger" [hidden]="!usernameExists">
+        Username already exists user another one !
+      </div>
+    </div>
+  </div>
+  <div class="row m-3">
+    <div class="col">
+      <form class="form" #form="ngForm">
+        <div class="row">
+          <div class="col">
+            <input type="text" [(ngModel)]="username" name="username" placeholder="Username"
+                   id="username" class="form-control " required #userName="ngModel">
+            <div [hidden]="userName.valid || userName.pristine" class="mt-2 alert alert-danger">
+              Username required!!
+            </div>
+          </div>
+          <div class="col">
+
+            <input type="password" placeholder="123qwe#$" [(ngModel)]="password" name="password"
+                   id="password" class="form-control" required #pass="ngModel">
+            <div [hidden]="pass.valid || pass.pristine" class="mt-2 alert alert-danger">
+              Password required!!
+            </div>
+          </div>
+          <div class="col">
+            <i class="fa fa-2x p-1 btn fa-plus" (click)="createAdmin(username, password); form.reset()"></i>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div *ngFor="let user of admins" class="">
+    <div class="row bg-white border shadow text-dark p-2 mx-3" data-toggle="collapse"
+         *ngIf="currentAdmin && user && currentAdmin.username != user.username">
+      <div class="col">
+        <h4>{{user.username}}</h4>
+      </div>
+      <div class="col">
+        <i class="btn fa fa-2x fa-trash float-right ml-2" (click)="deleteAdmin(user._id)"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -17,6 +17,10 @@ import { MovieDetailComponent } from './components/movie-detail/movie-detail.com
 import { RegisterComponent } from './components/register/register.component';
 import {UserService} from './services/user.service';
 import {MovieListingService} from './services/movie-listing.service';
+import { UserListComponent } from './user-list/user-list.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
+import { EventComponent } from './event/event.component';
+import { EventDetailComponent } from './event-detail/event-detail.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,10 @@ import {MovieListingService} from './services/movie-listing.service';
     GuestProfileComponent,
     MovieDetailComponent,
     RegisterComponent,
+    UserListComponent,
+    UserDetailComponent,
+    EventComponent,
+    EventDetailComponent,
   ],
   imports: [
     BrowserModule,
