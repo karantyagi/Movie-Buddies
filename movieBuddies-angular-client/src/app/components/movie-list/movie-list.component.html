@@ -103,18 +103,22 @@
           <span class="input-group-text"><i class="fa fa-search"></i></span>
         </div>
         <input type="text" class="form-control" placeholder="Enter movie name" aria-label="Enter movie name"
-               aria-describedby="basic-addon1" [(ngModel)]="keywordOrTitle" name="keywordOrTitle">
+               aria-describedby="basic-addon1" [(ngModel)]="keyword" name="keyword">
         &nbsp;&nbsp;
-        <button class="btn btn-outline-primary" type="button">Search</button>
+        <button class="btn btn-outline-primary" type="button" (click)="fetchMoviesByKeyword()" >Search</button>
         </div>
       </div>
     <div class="col-3 m-0">
     </div>
     <div class="col-5 m-0">
-      <button class="btn btn-outline-dark mx-2" type="button">Now Playing</button>
-      <button class="btn btn-outline-dark mx-2" type="button">Top Rated</button>
-      <button class="btn btn-outline-dark mx-2" type="button">Popular</button>
-      <button class="btn btn-outline-dark mx-2" type="button">Upcoming</button>
+      <button class="btn btn-outline-dark mx-2" type="button"
+      (click)="fetchAllOngoingMovies()">Now Playing</button>
+      <button class="btn btn-outline-dark mx-2" type="button"
+      (click)="fetchTopRatedMovies()">Top Rated</button>
+      <button class="btn btn-outline-dark mx-2" type="button"
+      (click)="fetchPopularMovies()">Popular</button>
+      <button class="btn btn-outline-dark mx-2" type="button"
+      (click)="fetchUpcomingMovies()">Upcoming</button>
     </div>
 
   </div>

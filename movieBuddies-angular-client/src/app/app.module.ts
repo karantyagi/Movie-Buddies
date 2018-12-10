@@ -21,6 +21,9 @@ import { UserListComponent } from './user-list/user-list.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { EventComponent } from './event/event.component';
 import { EventDetailComponent } from './event-detail/event-detail.component';
+import {EventService} from './services/event.service';
+import {MovieService} from './services/movie.service';
+import {BookingService} from './services/booking.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,10 @@ import { EventDetailComponent } from './event-detail/event-detail.component';
   ],
   providers: [
     UserService,
-    MovieListingService
+    MovieListingService,
+    EventService,
+    MovieService,
+    BookingService
   ],
   bootstrap: [AppComponent]
 })
