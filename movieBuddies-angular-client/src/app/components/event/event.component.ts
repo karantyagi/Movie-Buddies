@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import {ActivatedRoute, Router} from '@angular/router';
-import {EventService} from '../services/event.service';
-import {MovieEvent} from '../models/movieEvent.model.client';
-import {UserService} from '../services/user.service';
-import {User} from '../models/user.model.client';
+import {EventService} from '../../services/event.service';
+import {MovieEvent} from '../../models/movieEvent.model.client';
+import {UserService} from '../../services/user.service';
+import {User} from '../../models/user.model.client';
 
 @Component({
   selector: 'app-event',

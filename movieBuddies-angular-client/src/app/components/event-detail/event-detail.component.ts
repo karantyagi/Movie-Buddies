@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {MovieEvent} from '../models/movieEvent.model.client';
+import {MovieEvent} from '../../models/movieEvent.model.client';
 import {ActivatedRoute, Router} from '@angular/router';
-import {EventService} from '../services/event.service';
-import {BookingService} from '../services/booking.service';
-import {UserService} from '../services/user.service';
-import {BookingDetail} from '../models/bookingDetail.model.client';
-import {User} from '../models/user.model.client';
+import {EventService} from '../../services/event.service';
+import {BookingService} from '../../services/booking.service';
+import {UserService} from '../../services/user.service';
+import {BookingDetail} from '../../models/bookingDetail.model.client';
+import {User} from '../../models/user.model.client';
 
 @Component({
   selector: 'app-event-detail',

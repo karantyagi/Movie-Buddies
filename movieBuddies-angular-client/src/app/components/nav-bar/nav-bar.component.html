@@ -1,7 +1,5 @@
 <!--nav bar-->
 
-<!--nav bar-->
-
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #e3f2fd;">
 
   <a class="navbar-brand " href="#" style="color: #007bff;">
@@ -17,6 +15,8 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item my-1">
+
+
         <a class="btn btn-outline-secondary ml-3" [routerLinkActive]="['active']"
            routerLink="/home" >Home</a>
         <!--<span class="sr-only">(current)</span>-->
@@ -31,7 +31,9 @@
            routerLink="/event-list">Events</a>
       </li>
 
-      <!-- dynamic navs -->
+
+
+      <!-- admin USER MANAGEMENT -->
 
       <li class="nav-item my-1">
         <a [hidden]="(user.username === 'No session maintained'
@@ -40,7 +42,7 @@
            [routerLinkActive]="['active']" routerLink="/admin" >Admin</a>
       </li>
 
-      <!--guest profile and dashboard-->
+      <!--guest profile, dashboard and movie buffs-->
 
       <li class="nav-item my-1">
         <a [hidden]="(user.username == 'No session maintained' || user.role !== 'Guest')"
@@ -48,11 +50,16 @@
            routerLink="/profile-guest/">Profile</a>
       </li>
 
-
       <li class="nav-item my-1">
         <a [hidden]="(user.username == 'No session maintained' || user.role !== 'Guest')"
            class="btn btn-outline-success ml-3" [routerLinkActive]="['active']"
            routerLink="/dashboard-guest">Dashboard</a>
+      </li>
+
+      <li class="nav-item my-1">
+        <a [hidden]="(user.username == 'No session maintained') || (user.role !== 'Guest')"
+           class="btn btn-outline-success ml-3" [routerLinkActive]="['active']"
+           routerLink="/user-list">Movie Buffs</a>
       </li>
 
 
@@ -66,7 +73,7 @@
 
 
       <li class="nav-item my-1">
-        <a [hidden]="(user.username == 'No session maintained' || user.role !== 'Host')"
+        <a [hidden]="(user.username == 'No session maintained' || user.role === 'Guest')"
            class="btn btn-outline-success ml-3" [routerLinkActive]="['active']"
            routerLink="/dashboard-host">Dashboard</a>
       </li>

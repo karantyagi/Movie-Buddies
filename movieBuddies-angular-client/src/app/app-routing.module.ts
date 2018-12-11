@@ -12,8 +12,8 @@ import {HostDashboardComponent} from './components/host-dashboard/host-dashboard
 import {GuestDashboardComponent} from './components/guest-dashboard/guest-dashboard.component';
 import {UserDetailComponent} from './components/user-detail/user-detail.component';
 import {UserListComponent} from './components/user-list/user-list.component';
-import {EventComponent} from './event/event.component';
-import {EventDetailComponent} from './event-detail/event-detail.component';
+import {EventComponent} from './components/event/event.component';
+import {EventDetailComponent} from './components/event-detail/event-detail.component';
 
 
 const routes: Routes = [

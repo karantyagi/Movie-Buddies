@@ -1,4 +1,6 @@
-<!--&lt;!&ndash;nav bar&ndash;&gt;-->
+<!--nav bar-->
+
+<!--nav bar-->
 
 <!--<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #e3f2fd;">-->
 
@@ -64,14 +66,13 @@
 
 
       <!--<li class="nav-item my-1">-->
-        <!--<a [hidden]="(user.username == 'No session maintained' || user.role === 'Guest')"-->
+        <!--<a [hidden]="(user.username == 'No session maintained' || user.role !== 'Host')"-->
            <!--class="btn btn-outline-success ml-3" [routerLinkActive]="['active']"-->
            <!--routerLink="/dashboard-host">Dashboard</a>-->
       <!--</li>-->
 
       <!--<li class="nav-item my-1">-->
-        <!--<a [hidden]="(user.username == 'No session maintained') || (user.role == 'Host')  ||-->
-        <!--(user.role == 'Admin' )"-->
+        <!--<a [hidden]="(user.username === 'No session maintained') || (user.role == 'Guest')"-->
            <!--class="btn btn-outline-success ml-3" [routerLinkActive]="['active']"-->
            <!--routerLink="/user-list">Movie Buffs</a>-->
       <!--</li>-->
@@ -107,10 +108,34 @@
 <!--</nav>-->
 
 <app-nav-bar></app-nav-bar>
+
 <!--  .......................Nav Bar ends ............................... -->
 
 
-<div class="cont">
-  <router-outlet></router-outlet>
-  <!--<router-outlet (activate)="sessionCheck()" ></router-outlet>-->
+
+
+
+<div class="p-5 mt-5">
+  <h1 class=" text-center bg-secondary rounded shadow p-2 mb-4 heading text-light">
+    Events List
+  </h1>
+
+
+  <ul class="list-group">
+    <li *ngFor="let m of latestEvents" class="list-group-item my-2 rounded shadow-sm" style="background-color: #e3f2fd;">
+      <div class="row text-dark">
+        <div class="col-8">
+          <h5 style="color: rgba(0,255,123, 0.85);">
+            <a routerLink="/event-list/event-detail/{{m.id}}">{{m.name}}</a></h5>
+        </div>
+        <div class="col-4" style="text-align: right">
+          Event Date : {{m.date}}
+        </div>
+      </div>
+    </li>
+
+  </ul>
+  <br/>
 </div>
+
+<app-footer></app-footer>

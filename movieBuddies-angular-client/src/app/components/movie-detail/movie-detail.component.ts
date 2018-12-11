@@ -100,8 +100,9 @@ export class MovieDetailComponent implements OnInit {
 
   requestMovie(){
     console.log('>>>>', this.user.username);
-    if(this.user.username == 'No session maintained' || this.user.username === undefined){
-      alert('Login to request a movie!');
+    if(this.user.username == 'No session maintained' || this.user.username === undefined
+    || this.user.role == 'Admin' || this.user.role == 'Host'){
+      alert('Login as a Guest user to request a movie!');
     }
     else{
       console.log('Movie added to user\'s Requested list! [Movie Status]: ', this.requested);
