@@ -1,3 +1,5 @@
+<!--nav bar-->
+
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #e3f2fd;">
 
   <a class="navbar-brand " href="#" style="color: #007bff;">
@@ -27,7 +29,6 @@
            routerLink="/event-list">Events</a>
       </li>
 
-
       <!-- dynamic navs -->
 
       <li class="nav-item my-1">
@@ -36,7 +37,6 @@
           ml-3"
            [routerLinkActive]="['active']" routerLink="/admin" >Admin</a>
       </li>
-
 
       <!--guest profile and dashboard-->
 
@@ -64,11 +64,17 @@
 
 
       <li class="nav-item my-1">
-        <a [hidden]="(user.username == 'No session maintained' || user.role !== 'Host')"
+        <a [hidden]="(user.username == 'No session maintained' || user.role === 'Guest')"
            class="btn btn-outline-success ml-3" [routerLinkActive]="['active']"
            routerLink="/dashboard-host">Dashboard</a>
       </li>
 
+      <li class="nav-item my-1">
+        <a [hidden]="(user.username == 'No session maintained') || (user.role == 'Host')  ||
+        (user.role == 'Admin' )"
+           class="btn btn-outline-success ml-3" [routerLinkActive]="['active']"
+           routerLink="/user-list">Movie Buffs</a>
+      </li>
 
     </ul>
     <ul class="navbar-nav float-right">

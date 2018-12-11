@@ -1,5 +1,7 @@
 <!--nav bar-->
 
+<!--nav bar-->
+
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #e3f2fd;">
 
   <a class="navbar-brand " href="#" style="color: #007bff;">
@@ -70,7 +72,7 @@
       </li>
 
       <li class="nav-item my-1">
-        <a [hidden]="(user.username == 'No session maintained') || (user.role == 'Host')"
+        <a [hidden]="(user.username === 'No session maintained') || (user.role == 'Guest')"
            class="btn btn-outline-success ml-3" [routerLinkActive]="['active']"
            routerLink="/user-list">Movie Buffs</a>
       </li>
@@ -107,6 +109,7 @@
 
 
 <!--  .......................Nav Bar ends ............................... -->
+
 
 
 

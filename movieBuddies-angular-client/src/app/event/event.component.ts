@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {EventService} from '../services/event.service';
 import {MovieEvent} from '../models/movieEvent.model.client';
 import {UserService} from '../services/user.service';
@@ -17,7 +17,9 @@ export class EventComponent implements OnInit {
   user: User = new User();
 
   constructor(private eventService: EventService,
-              private userService: UserService,  private route: ActivatedRoute) {
+              private userService: UserService, private route: ActivatedRoute,
+              private router: Router) {
+
     this.sessionCheck();
     this.fetchAllEvents();
   }
@@ -37,7 +39,7 @@ export class EventComponent implements OnInit {
           m.location = e['location'];
           m.maxTickets = e['maxTickets'];
           m.movies = e['movies'];
-          m.hostId = e['user'];
+          m.user = e['user'];
           this.latestEvents = this.latestEvents.concat(m);
         });
 
@@ -50,7 +52,9 @@ export class EventComponent implements OnInit {
   }
 
   sessionCheck() {
+    this.user.username = "No session maintained";
     this.userService.findLoggedUser().then((user) => {
+      console.log('USER', user);
       if(user['username'] == 'No session maintained'){
         console.log("User not in session")
       }

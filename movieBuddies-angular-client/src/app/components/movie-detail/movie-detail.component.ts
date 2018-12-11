@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {MovieListingService} from '../../services/movie-listing.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Movie} from '../../models/movie.model.client';
 import {MovieDetail} from '../../models/movieDetail.model.client';
+import {User} from '../../models/user.model.client';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-movie-detail',
@@ -18,7 +20,10 @@ export class MovieDetailComponent implements OnInit {
   movie: Movie;
   requested = false;
 
-  constructor(private movieService: MovieListingService,  private route: ActivatedRoute) {
+  user: User = new User();
+
+  constructor(private movieService: MovieListingService,  private route: ActivatedRoute,
+              private userService: UserService, private router: Router) {
     this.requested = false;
     // sleep time expects milliseconds
     const sleep = (time) => {
@@ -44,6 +49,36 @@ export class MovieDetailComponent implements OnInit {
     });
   }
 
+
+  sessionCheck() {
+    this.userService.findLoggedUser().then((user) => {
+      if(user['username'] == 'No session maintained'){
+        console.log("User not in session")
+      }
+      else{
+        console.log('User in session : ', user['username']);
+        console.log('ROLE : ', user['role']);
+        this.user = user;
+      }
+    });
+  }
+
+  logout() {
+    this.user.username = 'No session maintained';
+    this.userService.logout().then(() => this.router.navigate(['/home']))
+      .then(() =>
+        this.userService.findLoggedUser().then((user) => {
+            if(user['username'] == 'No session maintained'){
+              console.log("User not in session")
+            }
+            else{
+              console.log('User in session : ', user['username']);
+              console.log('ROLE : ', user['role']);
+            }
+          }
+        ));
+  }
+
   fetchMoviesDetail(mId) {
     this.movie = new Movie();
     this.movieService.findMoviesDetails(mId)
@@ -64,15 +99,15 @@ export class MovieDetailComponent implements OnInit {
   }
 
   requestMovie(){
-    console.log('Movie added to user\'s Requested list! [Movie Status]: ', this.requested);
-    this.requested = true;
+    console.log('>>>>', this.user.username);
+    if(this.user.username == 'No session maintained' || this.user.username === undefined){
+      alert('Login to request a movie!');
+    }
+    else{
+      console.log('Movie added to user\'s Requested list! [Movie Status]: ', this.requested);
+      this.requested = true;
+    }
   }
-
-
-
-
-
-
 
 
   ngOnInit() {

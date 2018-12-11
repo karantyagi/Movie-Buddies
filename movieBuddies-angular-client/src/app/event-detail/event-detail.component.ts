@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MovieEvent} from '../models/movieEvent.model.client';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {EventService} from '../services/event.service';
 import {BookingService} from '../services/booking.service';
 import {UserService} from '../services/user.service';
@@ -23,7 +23,9 @@ export class EventDetailComponent implements OnInit {
   constructor(private eventService: EventService,
               private userService: UserService,
               private bookingService: BookingService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private router: Router) {
+
     this.booked = false;
     this.route.params.subscribe(param => {
       // console.log('PARAMS: ', param);
@@ -50,17 +52,22 @@ export class EventDetailComponent implements OnInit {
   }
 
   bookEvent(){
-    console.log('Create booking with event ID: ', this.event.id);
-    this.booked = !this.booked;
-    let b = new BookingDetail();
-    b.eventId = this.eventId;
-    b.event = this.event;
-    b.user = this.user['_id'];
-    console.log('create booking', b);
-    this.bookingService.createBooking(b)
-      .then((response) => {
-        console.log(response);
-      })
+    if(this.user.username == 'No session maintained' || this.user.username === undefined){
+      alert('Login to book an event! ');
+    }
+    else{
+      console.log('Create booking with event ID: ', this.event.id);
+      this.booked = !this.booked;
+      let b = new BookingDetail();
+      b.eventId = this.eventId;
+      b.event = this.event;
+      b.user = this.user['_id'];
+      console.log('create booking', b);
+      this.bookingService.createBooking(b)
+        .then((response) => {
+          console.log(response);
+        });
+    }
   }
 
 
@@ -73,10 +80,10 @@ export class EventDetailComponent implements OnInit {
   //   //   })
   // }
 
-
-
   sessionCheck() {
+    this.user.username = "No session maintained";
     this.userService.findLoggedUser().then((user) => {
+      console.log('USER', user);
       if(user['username'] == 'No session maintained'){
         console.log("User not in session")
       }

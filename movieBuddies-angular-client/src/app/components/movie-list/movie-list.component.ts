@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Movie} from '../../models/movie.model.client';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MovieListingService} from '../../services/movie-listing.service';
 import {MovieListing} from '../../models/movieListing.model.client';
+import {User} from '../../models/user.model.client';
+import {UserService} from '../../services/user.service';
 
 
 @Component({
@@ -16,8 +18,12 @@ export class MovieListComponent implements OnInit {
   page = '';
   latestMovieResults: MovieListing;
   latestMovies: Movie [] = [];
+  user: User = new User();
 
-  constructor(private movieService: MovieListingService,  private route: ActivatedRoute) {
+  constructor(private movieService: MovieListingService,
+              private userService: UserService, private route: ActivatedRoute,
+              private router: Router) {
+    this.sessionCheck();
     // sleep time expects milliseconds
     const sleep = (time) =>  {
       return new Promise((resolve) => setTimeout(resolve, time));
@@ -66,6 +72,7 @@ export class MovieListComponent implements OnInit {
 
   fetchAllOngoingMovies(page) {
     this.latestMovies = [];
+
 
     this.movieService.findOnGoingMovies(page)
       .then((response) => {
@@ -143,6 +150,39 @@ export class MovieListComponent implements OnInit {
         }
       ).catch(console.log);
   }
+
+  sessionCheck() {
+    this.user.username = "No session maintained";
+    this.userService.findLoggedUser().then((user) => {
+      console.log('USER', user);
+      if(user['username'] == 'No session maintained'){
+        console.log("User not in session")
+      }
+      else{
+        console.log('User in session : ', user['username']);
+        console.log('ROLE : ', user['role']);
+        this.user = user;
+      }
+    });
+  }
+
+  logout() {
+    this.user.username = 'No session maintained';
+    this.userService.logout().then(() => this.router.navigate(['/home']))
+      .then(() =>
+        this.userService.findLoggedUser().then((user) => {
+            if(user['username'] == 'No session maintained'){
+              console.log("User not in session")
+            }
+            else{
+              console.log('User in session : ', user['username']);
+              console.log('ROLE : ', user['role']);
+            }
+          }
+        ));
+  }
+
+
 
   ngOnInit() {
   }

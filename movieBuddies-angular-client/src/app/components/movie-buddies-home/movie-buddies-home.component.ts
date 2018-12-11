@@ -15,7 +15,7 @@ export class MovieBuddiesHomeComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) {
     this.sessionCheck();
   }
-  
+
   sessionCheck() {
     this.userService.findLoggedUser().then((user) => {
       if(user['username'] == 'No session maintained'){

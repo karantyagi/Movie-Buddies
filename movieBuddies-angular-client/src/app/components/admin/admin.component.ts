@@ -13,18 +13,21 @@ export class AdminComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) {
     this.user.username = 'No session maintained';
     this.sessionCheck();
+    this.findAllUsers();
+    this.role ="default";
   }
 
   user: User = new User();
-
+  updateUserObj:User;
   users: User;
   currentAdmin: User;
   allGuests = [];
   allUsers: User[];
   username: string;
   password: string;
-  admins = [];
+  role: string;
   usernameExists = false;
+  toggleUpdate = true;
 
   ngOnInit() {
     // this.fetchPendingUser();
@@ -38,8 +41,6 @@ export class AdminComponent implements OnInit {
     this.userService.findAllUsers().then((users) => {
       this.allUsers = users;
       this.allGuests = users.filter((user) => user.role === 'Host' && user.premiumRequestStatus);
-    }).then(() => {
-      this.admins = this.allUsers.filter((user) => user.role === 'Admin');
     }).then(() => this.userService.findLoggedUser().then((user) =>
       this.currentAdmin = user));
   }
@@ -52,21 +53,29 @@ export class AdminComponent implements OnInit {
   //   this.userService.rejectRecruiter(id).then(() => this.fetchPendingUser());
   // }
 
-  grantPremiumAccess(id) {
-    this.userService.grantPremiumAccess(id).then(() => this.findAllUsers());
-  }
+  // grantPremiumAccess(id) {
+  //   this.userService.grantPremiumAccess(id).then(() => this.findAllUsers());
+  // }
+  //
+  // revokePremiumAccess(id) {
+  //   this.userService.revokePremiumAccess(id).then(() => this.findAllUsers());
+  // }
 
-  revokePremiumAccess(id) {
-    this.userService.revokePremiumAccess(id).then(() => this.findAllUsers());
-  }
-
-  deleteAdmin(id) {
+  deleteUser(id) {
     this.userService.deleteUser(id).then(() => this.findAllUsers());
   }
 
-  createAdmin(username, password) {
+  updateUser() {
+    this.updateUserObj.username = this.username;
+    this.updateUserObj.password = this.password;
+    this.updateUserObj.role = this.role;
+    this.toggleUpdate = !this.toggleUpdate;
+    this.userService.updateUserProfile(this.updateUserObj).then(() => this.findAllUsers()).then(() => this.toggleUpdate = !this.toggleUpdate );
+  }
 
-    const role = 'Admin';
+  createUser(username, password) {
+
+    const role = this.role;
     this.userService.createUser({username, password, role}).then((res) => {
       if (res.status === true) {
         this.findAllUsers();
@@ -78,6 +87,7 @@ export class AdminComponent implements OnInit {
   }
 
   sessionCheck() {
+    this.user.username = 'No session maintained';
     this.userService.findLoggedUser().then((user) => {
       if(user['username'] == 'No session maintained'){
         console.log("User not in session")
@@ -106,6 +116,8 @@ export class AdminComponent implements OnInit {
         ));
   }
 
-
-
+  modify(user: User) {
+    this.username = user.username;this.password=user.password;this.role = user.role;this.updateUserObj=user;
+    this.toggleUpdate=!this.toggleUpdate;
+  }
 }

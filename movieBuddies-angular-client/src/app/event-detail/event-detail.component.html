@@ -64,7 +64,7 @@
 
 
       <li class="nav-item my-1">
-        <a [hidden]="(user.username == 'No session maintained' || user.role !== 'Host')"
+        <a [hidden]="(user.username == 'No session maintained' || user.role === 'Guest')"
            class="btn btn-outline-success ml-3" [routerLinkActive]="['active']"
            routerLink="/dashboard-host">Dashboard</a>
       </li>
@@ -104,6 +104,9 @@
     </ul>
   </div>
 </nav>
+
+
+<!--  .......................Nav Bar ends ............................... -->
 
 
 <!--  .......................Nav Bar ends ............................... -->
