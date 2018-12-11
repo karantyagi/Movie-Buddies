@@ -1,0 +1,102 @@
+
+<div class="p-5 mt-5 background-pic">
+  <h1 class=" text-center bg-secondary head rounded shadow p-2 mb-4 heading text-light">
+    Movies List
+  </h1>
+
+  <div class="row mb-5">
+    <div class="col-4">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="fa fa-search"></i></span>
+        </div>
+        <input type="text" class="form-control" placeholder="Enter movie name" aria-label="Enter movie name"
+               aria-describedby="basic-addon1" [(ngModel)]="keyword" name="keyword">
+        &nbsp;&nbsp;
+        <button class="btn btn-light" type="button" (click)="fetchMoviesByKeyword()" >Search</button>
+        </div>
+      </div>
+    <div class="col-3 m-0">
+    </div>
+    <div class="col-5 m-0">
+      <button class="btn btn-light mx-2" type="button"
+      (click)="fetchAllOngoingMovies()">Now Playing</button>
+      <button class="btn btn-light mx-2" type="button"
+      (click)="fetchTopRatedMovies()">Top Rated</button>
+      <button class="btn btn-light mx-2" type="button"
+      (click)="fetchPopularMovies()">Popular</button>
+      <button class="btn btn-light mx-2" type="button"
+      (click)="fetchUpcomingMovies()">Upcoming</button>
+    </div>
+
+  </div>
+
+  <ul class="list-group">
+    <li *ngFor="let m of latestMovies" class="list-group-item my-2 back rounded shadow-sm">
+      <div class="row text-dark">
+        <div class="col-8">
+          <h5 style="color: rgba(0,255,123, 0.85);">
+            <a routerLink="/movie-list/{{page}}/movie-detail/{{m.id}}">{{m.title}}</a></h5>
+        </div>
+        <div class="col-4" style="text-align: right">
+          Release date : {{m.release_date}}
+        </div>
+      </div>
+    </li>
+
+  </ul>
+
+  <!--<li *ngFor="let job of jobs"-->
+  <!--class="list-group-item bg-light my-2 rounded shadow-sm">-->
+  <!--<div [hidden]="job.jobSource !== 'github' ">-->
+  <!--<div class="row text-dark">-->
+  <!--<div class="col-8">-->
+  <!--<h5 style="color: rgba(0,123,255,0.85);">-->
+  <!--<a routerLink="view-job/{{job.id}}|{{job.jobSource}}">{{job.title}}</a></h5>-->
+  <!--</div>-->
+  <!--<div class="col-4" style="text-align: right">-->
+  <!--{{job.location}}-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="row">-->
+  <!--<div class="col-8">{{job.company}} | {{job.type}}</div>-->
+  <!--<div class="col-4" style="text-align: right">-->
+  <!--<small>Posted on: {{job.created_at}}</small>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</li>-->
+  <br/>
+  <div class="mb-4">
+    <div class="row">
+      <div class="col-5 col-centered"></div>
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" routerLink="/movie-list/{{page-1}}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" routerLink="/movie-list/1">1</a></li>
+          <li class="page-item"><a class="page-link" routerLink="/movie-list/2">2</a></li>
+          <li class="page-item"><a class="page-link" routerLink="/movie-list/3">3</a></li>
+          <li class="page-item"><a class="page-link" routerLink="/movie-list/4">4</a></li>
+          <li class="page-item"><a class="page-link" routerLink="/movie-list/5">5</a></li>
+          <li class="page-item">
+            <a class="page-link" aria-label="Next" routerLink="/movie-list/{{+page + +1}}.">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+    </div>
+  </div>
+</div>
+<!--pagination-->
+
+
+
+<app-footer></app-footer>

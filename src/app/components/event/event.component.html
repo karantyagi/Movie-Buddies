@@ -1,0 +1,24 @@
+<div class="p-5 mt-5">
+  <h1 class=" text-center bg-secondary rounded shadow p-2 mb-4 heading text-light">
+    Events List
+  </h1>
+
+
+  <ul class="list-group">
+    <li *ngFor="let m of latestEvents" class="list-group-item my-2 rounded shadow-sm" style="background-color: #e3f2fd;">
+      <div class="row text-dark">
+        <div class="col-8">
+          <h5 style="color: rgba(0,255,123, 0.85);">
+            <a routerLink="/event-list/event-detail/{{m.id}}">{{m.name}}</a></h5>
+        </div>
+        <div class="col-4" style="text-align: right">
+          Event Date : {{m.date}}
+        </div>
+      </div>
+    </li>
+
+  </ul>
+  <br/>
+</div>
+
+<app-footer></app-footer>

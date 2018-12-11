@@ -1,22 +1,16 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-**/desktop.ini
-desktop.ini
-
-### IntelliJ IDEA ###
-.idea
-.idea/workspace.xml
-*.iws
-*.iml
-*.ipr
-.idea/*
-
 # compiled output
+/dist
 /tmp
 /out-tsc
 
 # dependencies
 /node_modules
+
+# profiling files
+chrome-profiler-events.json
+speed-measure-plugin.json
 
 # IDEs and editors
 /.idea

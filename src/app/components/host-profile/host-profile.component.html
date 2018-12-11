@@ -1,0 +1,71 @@
+<!--main content-->
+
+<div class="container-fluid">
+  <!--<div style="margin: 5px; padding: 15px;" >-->
+  <div class="p-5 mt-5">
+    <h2 style="color: #0069d9;">Host Profile</h2>
+    <div>
+      <br>
+      <form>
+        <div class="form-group row">
+          <label for="inputUserName" class="col-form-label ml-5 px-2" style="width: 12%">User Name</label>
+          <div class="col-sm-10">
+            <input [(ngModel)]="user.username" [ngModelOptions]="{standalone: true}"
+                   type="text" class="form-control" id="inputUserName" placeholder="Username" value="">
+          </div>
+        </div>
+
+        <div class="form-group row ">
+          <label for="inputFirstName" class="col-form-label ml-5 px-2" style="width: 12%">First Name</label>
+          <div class="col-sm-10">
+            <input [(ngModel)]="user.firstName" [ngModelOptions]="{standalone: true}"
+                   type="text" class="form-control" id="inputFirstName" placeholder="Firstname" value="">
+          </div>
+        </div>
+
+        <div class="form-group row ">
+          <label for="inputLastName" class="col-form-label ml-5 px-2" style="width: 12%">Last Name</label>
+          <div class="col-sm-10">
+            <input [(ngModel)]="user.lastName" [ngModelOptions]="{standalone: true}"
+                   type="text" class="form-control" id="inputLastName" placeholder="Lastname" value="">
+          </div>
+        </div>
+
+
+        <!--<div class="form-group row">-->
+        <!--<label for="inputPhone" class="col-form-label ml-5 px-2" style="width: 12%">Phone Number</label>-->
+        <!--<div class="col-sm-10">-->
+        <!--<input [(ngModel)]="phone" [ngModelOptions]="{standalone: true}"-->
+        <!--type="text" class="form-control" id="inputPhone" placeholder="phone number" value="">-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <div class="form-group row">
+          <label for="inputEmail" class="col-form-label ml-5 px-2" style="width: 12%">Email</label>
+          <div class="col-sm-10">
+            <input [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}"
+                   type="text" class="form-control" id="inputEmail" placeholder="email" value="">
+          </div>
+        </div>
+
+        <!--<div class="form-group row">-->
+        <!--<label for="inputAddress" class="col-form-label ml-5 px-2" style="width: 12%">Address</label>-->
+        <!--<div class="col-sm-10">-->
+        <!--<input [(ngModel)]="address" [ngModelOptions]="{standalone: true}"-->
+        <!--type="text" class="form-control" id="inputAddress" placeholder="address" value="">-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <button (click)="update()"
+                class="btn btn-primary" style="margin-left:4%; width: 96%">
+          Update
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+<app-footer></app-footer>

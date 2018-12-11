@@ -1,0 +1,126 @@
+
+<div class="container-fluid">
+  <!--<div style="margin: 5px; padding: 15px;" >-->
+  <div class="p-5 mt-5">
+    <h2 style="color: #0069d9;">Guest Dashboard</h2>
+    <div>
+      <br/>
+      <button [hidden]="requestedMoviesView" class="btn btn-outline-success shadow" (click)="showRequestedMoviesList()">
+        <h3> View Requested Movies</h3>
+      </button>
+        <!--requested movies list-->
+
+        <div [hidden]="!requestedMoviesView">
+          <div class="row">
+            <div class="col-4 mx-1">
+              <h2 class="font-weight-bold" style="color: green">
+                My Requested Movies</h2>
+              <ul class="list-group py-1 my-1" style="width: 18rem">
+                <li *ngFor="let movie of movies"
+                    class="list-group-item text-center shadow rounded my-2"
+                    style="background-color: #e3f2fd;">
+                    <span style="font-size: x-large; color:dodgerblue;">{{movie.title}}</span>
+
+                </li>
+              </ul>
+              <br/>
+              <button
+                (click)="requestedMoviesView = !requestedMoviesView"
+                class="btn btn-outline-success rounded shadow-sm">
+                <i class="fa fa-arrow-up fa-2x"> </i></button>
+            </div>
+          </div>
+        </div>
+      <hr/>
+
+      <!--.............................-->
+
+      <button [hidden]="bookingsView" class="btn btn-outline-success shadow" (click)="showBookingsList()">
+        <h3> View Event Bookings</h3>
+      </button>
+      <!--bookings list-->
+
+      <div [hidden]="!bookingsView">
+        <div class="row">
+          <div class="col-6 mx-1">
+            <h2 class="font-weight-bold" style="color: green">
+              My Event Bookings</h2>
+            <ul class="list-group rounded py-1 my-1" style="width: 18rem">
+              <ul class="list-group py-1 my-1" style="width: 36rem">
+                <li *ngFor="let b of bookings"
+                    class="list-group-item shadow rounded my-2"
+                    style="background-color: #e3f2fd;">
+                  <a routerLink="/dashboard-guest/{{b._id}}">
+                  <span style="font-weight: bold; font-size: x-large; color:dodgerblue;">{{b.event.name}}</span>
+                  </a>
+                  <br/>
+                  <span style="font-size: large; color:dodgerblue;">Event Date : {{b.event.date}}</span>
+                  <br/>
+                  <span style="font-size: large; color:dodgerblue;">Tickets : {{b.tickets}}</span>
+                  <button (click)="cancelBooking(b._id)"
+                          class="float-right btn btn-outline-danger rounded shadow-sm">
+                    <i class="fa fa-trash"></i>&nbsp;Cancel Booking
+                  </button>
+                </li>
+              </ul>
+
+            </ul>
+            <br/>
+            <button
+              (click)="bookingsView = !bookingsView"
+              class="btn btn-outline-success rounded shadow-sm">
+              <i class="fa fa-arrow-up fa-2x"> </i></button>
+          </div>
+          <div class="col-5 mx-2">
+            <h2 style="color: purple" class="text-center font-weight-bold">Update Booking</h2>
+            <form>
+
+              <div class="form-group row ">
+                <label for="inputFirstName" class="col-form-label ml-5 px-2" style="width: 12%">Tickets</label>
+                <div class="col-sm-10">
+                  <input [(ngModel)]="updateBooking.tickets" [ngModelOptions]="{standalone: true}"
+                         type="text" class="form-control" id="inputFirstName" placeholder="Tickets" value="">
+                </div>
+              </div>
+
+
+              <button (click)="updateBookingTicket()"
+                      class="btn btn-primary" style="margin-left:4%; width: 96%">
+                Update Booking
+              </button>
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div>
+        <a class="btn btn-lg  btn-outline-primary shadow float-right" routerLink="/user-list">
+          Find and follow new buddies</a>
+        <h2> My Buddies </h2>
+        <h5> Movie Enthusiasts that I follow </h5>
+        <ul class="list-group rounded py-1 my-1" style="width: 18rem">
+
+
+          <li *ngFor="let guest of guestusers"
+              class="list-group-item shadow rounded my-2">
+            <span style="font-size: large; color:dodgerblue;"> </span>{{guest.username}}
+
+            <button
+              class="btn btn-outline-primary float-right"
+              (click)="updateUnfollowing(guest, guest._id)">Un-follow
+            </button>
+          </li>
+        </ul>
+
+      </div>
+
+      <br>
+      <br/>
+
+    </div>
+  </div>
+</div>
+
+
+<app-footer></app-footer>

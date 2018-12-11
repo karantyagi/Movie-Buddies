@@ -1,0 +1,33 @@
+
+<div class="p-5 mt-5">
+  <h1 class="text-center font-weight-bold">{{event.name}}</h1>
+  <div class="container col-8">
+    <div class="card text-center shadow-lg rounded" style="background-color: #e3f2fd;">
+      <div class="card-body">
+        <h4 class="card-title"> Date : {{event.date}}</h4>
+        <h4 class="card-title"> Time : {{event.time}}</h4>
+        <h4 class="card-title"> Location : {{event.location}}</h4>
+        <hr/>
+        <h4 class="card-title"> Movies to enjoy at the event</h4>
+        <h2 style="color: dodgerblue"><b>{{event.movies}} </b></h2>
+        <div class="alert alert-danger" *ngIf="user==null">
+          Please login as Guest to request movies
+        </div>
+        <button [hidden]=booked [disabled]="user==null" type="button"
+                class="btn btn-outline-success btn-lg mb-4"
+                (click)="bookEvent()">
+          Book event </button>
+
+        <button [hidden]=!booked  [disabled]="user==null" type="button"
+                class="disabled btn btn-primary btn-lg mb-4"
+                >
+          Event Booked
+        </button>
+      </div>
+    </div>
+  </div>
+
+<br/>
+
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,16 @@
+.hero{
+  background-image: url('./../../../assets/images/collage-3.jpg');
+  background-size: contain;
+  /*opacity: 0.8;*/
+}
+
+.back{
+  background: rgba(255,255,255,0.7);
+  margin-top: 15px;
+  /*opacity: 0.5;*/
+  /*filter: alpha(opacity=50); !* For IE8 and earlier *!*/
+}
+
+.textStyle{
+  font-family: SansSerif;
+}
