@@ -10,28 +10,49 @@ import {Router} from '@angular/router';
 })
 export class AppComponent {
   title = 'movieBuddies-angular-client';
-  user: User = null;
+  user: User = new User();
 
 
   constructor(private userService: UserService, private router: Router) {
     // this.router.events.subscribe(() => this.sessionCheck());
+    this.user.username = 'No session maintained';
     this.sessionCheck();
-
   }
 
   sessionCheck() {
     this.userService.findLoggedUser().then((user) => {
-      this.user = user;
-      console.log('logged in USER : ' , user);
+      if(user['username'] == 'No session maintained'){
+        console.log("User not in session")
+      }
+      else{
+        console.log('User in session : ', user['username']);
+        console.log('ROLE : ', user['role']);
+        this.user = user;
+      }
     });
   }
 
   logout() {
-
-    this.userService.logout().then(() => this.router.navigate(['*']))
+    this.user.username = 'No session maintained';
+    this.userService.logout().then(() => this.router.navigate(['/home']))
       .then(() =>
-        this.userService.findLoggedUser().then((user) => this.user = user));
+        this.userService.findLoggedUser().then((user) => {
+            if(user['username'] == 'No session maintained'){
+              console.log("User not in session")
+            }
+            else{
+              console.log('User in session : ', user['username']);
+              console.log('ROLE : ', user['role']);
+            }
+        }
+        ));
 
   }
+
+  ngOnInit() {
+    this.sessionCheck();
+  }
+
+
 }
 

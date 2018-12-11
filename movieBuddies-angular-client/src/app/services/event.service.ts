@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class EventService {
 
   url: string;
-  eventUrl: String
+  eventUrl: string;
 
   constructor() {
     let base = 'http://localhost:5500';
@@ -18,6 +18,20 @@ export class EventService {
 
     this.url = base + '/api/event';
     this.eventUrl = base + '/api/event/user';
+  }
+
+
+  findAllEvents() {
+    // console.log('in here');
+    return fetch(this.url, {
+      credentials: 'include'
+    }).then(response => {
+      if (response.headers.get('content-type') != null) {
+        return response.json();
+      } else {
+        return null;
+      }
+    });
   }
 
 

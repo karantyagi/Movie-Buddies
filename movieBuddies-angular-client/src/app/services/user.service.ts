@@ -88,17 +88,15 @@ export class UserService {
   }
 
   findLoggedUser() {
-    console.log('sadasdas');
+    console.log('Finding user in session if any ..');
     return fetch(this.urlLoggedUser, {
       credentials: 'include',
     }).then(response => {
-      if (response.headers.get('content-type') != null) {
         return response.json();
-      } else {
-        return null;
-      }
     });
   }
+
+
   findLoggedRecruiter() {
     return fetch(this.urlLoggedRecruiter, {
       credentials: 'include',
@@ -254,9 +252,20 @@ export class UserService {
   //   }).then(response => response.json());
   // }
   //
-  // findUserById(userId, callback) {
-  //   return fetch(this.url + '/' + userId).then(response => response.json()).then(callback);
-  // }
+
+  findUserById(id){
+    console.log('test pass');
+    return fetch(this.url + '/' + id, {
+      credentials: 'include',
+    }).then(response => {
+      if (response.headers.get('content-type') != null) {
+        return response.json();
+      } else {
+        return null;
+      }
+    });
+  }
+
   //
   //
   // updateUser(userId, user, callback) {

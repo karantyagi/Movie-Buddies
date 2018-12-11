@@ -27,63 +27,83 @@
            routerLink="/event-list">Events</a>
       </li>
 
-      <li class="nav-item my-1">
 
-        <a [hidden]="!(user != null && user.role === 'guest')" class="btn btn-outline-primary
-        font-weight-light ml-3"
-           [routerLinkActive]="['active']" routerLink="/profile-guest" >Profile</a>
-      </li>
+      <!-- dynamic navs -->
+
       <li class="nav-item my-1">
-        <a [hidden]="!(user != null && user.role === 'organizer')" class="btn btn-outline-primary
-        font-weight-light ml-3"
-           [routerLinkActive]="['active']" routerLink="/profile-host" >Profile</a>
-      </li>
-      <li class="nav-item my-1">
-        <a [hidden]="!(user != null && user.role === 'guest')" class="btn btn-outline-primary
-        font-weight-light ml-3"
-           [routerLinkActive]="['active']" routerLink="/dashboard-guest" >Dashboard</a>
-      </li>
-      <li class="nav-item my-1">
-        <a [hidden]="!(user != null && (user.role === 'organizer' || user.role === 'admin' ))"
-           class="btn btn-outline-primary
-        ml-3"
-           [routerLinkActive]="['active']" routerLink="/dashboard-organizer" >Dashboard</a>
-      </li>
-      <li class="nav-item my-1">
-        <a [hidden]="!(user != null && user.role === 'admin')" class="btn btn-outline-primary
+        <a [hidden]="(user.username === 'No session maintained'
+        || user.role !== 'Admin')" class="btn btn-outline-primary
           ml-3"
            [routerLinkActive]="['active']" routerLink="/admin" >Admin</a>
       </li>
 
+
+      <!--guest profile and dashboard-->
+
+      <li class="nav-item my-1">
+        <a [hidden]="(user.username == 'No session maintained' || user.role !== 'Guest')"
+           class="btn btn-outline-success ml-3" [routerLinkActive]="['active']"
+           routerLink="/profile-guest/">Profile</a>
+      </li>
+
+
+      <li class="nav-item my-1">
+        <a [hidden]="(user.username == 'No session maintained' || user.role !== 'Guest')"
+           class="btn btn-outline-success ml-3" [routerLinkActive]="['active']"
+           routerLink="/dashboard-guest">Dashboard</a>
+      </li>
+
+
+      <!--host profile and dashboard-->
+
+      <li class="nav-item my-1">
+        <a [hidden]="(user.username == 'No session maintained' || user.role !== 'Host')"
+           class="btn btn-outline-success ml-3" [routerLinkActive]="['active']"
+           routerLink="/profile-host/">Profile</a>
+      </li>
+
+
+      <li class="nav-item my-1">
+        <a [hidden]="(user.username == 'No session maintained' || user.role !== 'Host')"
+           class="btn btn-outline-success ml-3" [routerLinkActive]="['active']"
+           routerLink="/dashboard-host">Dashboard</a>
+      </li>
+
+
     </ul>
     <ul class="navbar-nav float-right">
       <li class="nav-item my-1">
-        <span [hidden]="user===null" class="mx-1">
+        <span [hidden]="(user.username == 'No session maintained')" class="mx-1">
           <span class="navbar-text" style="color: dimgrey;">
            <i [hidden]="user===null" class="fa fa-user"> </i>
-        Logged in as : </span>
-          <span style="color: dimgrey; font-weight: bold">&nbsp;{{username}}</span>
+            Logged in as: <b>{{user.username}}</b></span>
         </span>
       </li>
 
       <li class="nav-item my-1">
-        <button [hidden]="user===null" class="btn btn-outline-primary ml-3" (click)="logout()"
+        <button [hidden]="(user.username == 'No session maintained')" class="btn btn-outline-primary ml-3" (click)="logout()"
                 type="button">Logout</button>
       </li>
       <li class="nav-item my-1">
-        <button [hidden]="!(user === null)" class="btn btn-outline-primary
+        <button [hidden]="!(user.username == 'No session maintained')" class="btn btn-outline-primary
        ml-3" routerLink="/login" [routerLinkActive]="['active']"
                 type="button">Login</button>
       </li>
 
       <li class="nav-item my-1">
-        <button class="btn btn-outline-primary
+        <button [hidden]="!(user.username == 'No session maintained')"
+                class="btn btn-outline-primary
        ml-3" routerLink="/register" [routerLinkActive]="['active']"
                 type="button">Register</button>
       </li>
     </ul>
   </div>
 </nav>
+
+
+<!--  .......................Nav Bar ends ............................... -->
+
+
 <div class="cont">
   <router-outlet></router-outlet>
   <!--<router-outlet (activate)="sessionCheck()" ></router-outlet>-->

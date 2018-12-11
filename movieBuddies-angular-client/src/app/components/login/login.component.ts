@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     this.userService
       .login(username, password)
       .then((obj) => {
-        console.log(obj);
+        console.log("Logging in : ", obj);
         if (obj.status == 'success') {
           this.loginResponse.role = obj['role'];
           if (this.loginResponse.role === 'Guest' ) {
