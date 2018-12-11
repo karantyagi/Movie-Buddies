@@ -11,7 +11,7 @@ export class BookingService {
     let base = 'http://localhost:5500';
     this.url = base + '/api/booking';
   }
-
+//update booking
   updateBooking(bId, booking) {
     return fetch(this.url + '/' + bId, {
       method: 'PUT',
@@ -28,7 +28,7 @@ export class BookingService {
       }
     });
   }
-  //
+  //delete booking 
   deleteBooking(bookingId) {
     return fetch(this.url + '/' + bookingId, {
       method: 'DELETE',
@@ -50,7 +50,7 @@ export class BookingService {
     });
   }
 
-
+    // Find a booking for a user by userid
   findBookingByUserId(id) {
     return fetch(this.url + '/user/' + id, {
       credentials: 'include',
@@ -63,7 +63,7 @@ export class BookingService {
     });
   }
 
-
+    // Find a bookin by its id
   findBookingById(id){
     console.log('finding booking by id');
     return fetch(this.url + '/' + id, {

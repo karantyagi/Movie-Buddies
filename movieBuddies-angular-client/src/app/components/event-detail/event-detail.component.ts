@@ -71,14 +71,6 @@ export class EventDetailComponent implements OnInit {
   }
 
 
-  // unbookEvent(){
-  //   console.log('Delete booking for event ID: ', this.event.id);
-  //   this.booked = !this.booked;
-  //   // this.bookingService.deleteBooking(this.event.id)
-  //   //   .then((response) => {
-  //   //     console.log(response);
-  //   //   })
-  // }
 
   sessionCheck() {
     this.user.username = "No session maintained";
