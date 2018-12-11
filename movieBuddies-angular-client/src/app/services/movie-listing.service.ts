@@ -29,7 +29,6 @@ export class MovieListingService {
       "data": "{}"
     };
     return $.ajax(settings).done(function (response) {
-     // console.log(response);
     });
   }
 
@@ -44,7 +43,6 @@ export class MovieListingService {
       "data": "{}"
     };
     return $.ajax(settings).done(function (response) {
-      // console.log(response);
     });
   }
 
@@ -75,7 +73,6 @@ export class MovieListingService {
       "data": "{}"
     };
     return $.ajax(settings).done(function (response) {
-      // console.log(response);
     });
   }
 
@@ -91,7 +88,6 @@ export class MovieListingService {
       "data": "{}"
     };
     return $.ajax(settings).done(function (response) {
-      // console.log(response);
     });
   }
 
