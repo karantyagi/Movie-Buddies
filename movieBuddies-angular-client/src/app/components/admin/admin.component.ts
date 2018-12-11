@@ -45,21 +45,7 @@ export class AdminComponent implements OnInit {
       this.currentAdmin = user));
   }
 
-  // approveUser(id) {
-  //   this.userService.approveRecruiter(id).then(() => this.fetchPendingUser());
-  // }
-  //
-  // rejectUser(id) {
-  //   this.userService.rejectRecruiter(id).then(() => this.fetchPendingUser());
-  // }
-
-  // grantPremiumAccess(id) {
-  //   this.userService.grantPremiumAccess(id).then(() => this.findAllUsers());
-  // }
-  //
-  // revokePremiumAccess(id) {
-  //   this.userService.revokePremiumAccess(id).then(() => this.findAllUsers());
-  // }
+ 
 
   deleteUser(id) {
     this.userService.deleteUser(id).then(() => this.findAllUsers());
