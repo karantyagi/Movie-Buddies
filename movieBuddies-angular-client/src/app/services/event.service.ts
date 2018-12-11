@@ -35,9 +35,8 @@ export class EventService {
   }
 
 
-  findEventByUserId() {
-    console.log('test pass');
-    return fetch(this.eventUrl, {
+  findEventByUserId(id) {
+    return fetch(this.eventUrl + '/' + id, {
       credentials: 'include',
     }).then(response => {
       if (response.headers.get('content-type') != null) {

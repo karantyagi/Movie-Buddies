@@ -130,7 +130,7 @@
                 Event Name </label>
               <div class="col-sm-10">
                 <input [ngModelOptions]="{standalone: true}"
-                       [(ngModel)]="eventName"
+                       [(ngModel)]="event.name"
                        id="eventFld"
                        class="form-control wbdv-password-fld"
                        placeholder="Event Name">
@@ -142,10 +142,38 @@
                 Movies </label>
               <div class="col-sm-10">
                 <input [ngModelOptions]="{standalone: true}"
-                       [(ngModel)]="movies"
+                       [(ngModel)]="event.movies"
                        id="moviesFld"
                        class="form-control wbdv-password-fld"
                        placeholder="Movies to be played event">
+              </div>
+            </div>
+
+            <div [hidden]="user.premiumRequestStatus !== 'Verified'" class="row my-3">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-8">
+                <h4> Add Movies (From the list of - Most requested movies by all guests)</h4>
+                <ul class="list-group">
+                  <li *ngFor="let m of requestedMovies" class="list-group-item my-2 rounded shadow-sm" style="background-color: #e3f2fd;">
+                    <div class="row text-dark">
+                      <div class="col-8">
+                        <h5 style="color: dodgerblue;">
+                          {{m.title}}</h5>
+                      </div>
+                      <div class="col-4" style="text-align: right">
+                        <button class="btn btn-outline-primary mx-1"
+                        (click)="addMovie(m)">
+                          <i class="fa fa-plus"></i>
+                        </button>
+
+                        <button class="btn btn-outline-danger float-right mx-1"
+                                (click)="removeMovie(m)">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
 
@@ -154,7 +182,7 @@
                 Time </label>
               <div class="col-sm-10">
                 <input [ngModelOptions]="{standalone: true}"
-                       [(ngModel)]="time"
+                       [(ngModel)]="event.time"
                        id="timeFld"
                        class="form-control wbdv-password-fld"
                        placeholder="Event time">
@@ -166,7 +194,7 @@
                 Date </label>
               <div class="col-sm-10">
                 <input [ngModelOptions]="{standalone: true}"
-                       [(ngModel)]="date"
+                       [(ngModel)]="event.date"
                        id="dateFld"
                        class="form-control wbdv-password-fld"
                        placeholder="Date of event">
@@ -178,7 +206,7 @@
                 Location </label>
               <div class="col-sm-10">
                 <input [ngModelOptions]="{standalone: true}"
-                       [(ngModel)]="location"
+                       [(ngModel)]="event.location"
                        id="locationFld"
                        class="form-control wbdv-password-fld"
                        placeholder="Event's Location">
@@ -190,7 +218,7 @@
                 Max Tickets </label>
               <div class="col-sm-10">
                 <input [ngModelOptions]="{standalone: true}"
-                       [(ngModel)]="maxTickets"
+                       [(ngModel)]="event.maxTickets"
                        id="ticketsFld"
                        class="form-control wbdv-password-fld"
                        placeholder="Max Tickets for event">
@@ -198,7 +226,7 @@
             </div>
             <button id="createBtn"
                     [hidden]=updateMode
-                    (click)="createEvent(eventName, maxTickets, date, location, movies, time)"
+                    (click)="createEvent()"
                     class="btn"
                     style="margin-left:0%; width: 100%; color: white; background-color: green">
               Create Event
@@ -224,7 +252,7 @@
                 Event Name </label>
               <div class="col-sm-10">
                 <input [ngModelOptions]="{standalone: true}"
-                       [(ngModel)]="eventName"
+                       [(ngModel)]="event.name"
                        id="eventFld2"
                        class="form-control wbdv-password-fld"
                        placeholder="Event Name">
@@ -236,7 +264,7 @@
                 Movies </label>
               <div class="col-sm-10">
                 <input [ngModelOptions]="{standalone: true}"
-                       [(ngModel)]="movies"
+                       [(ngModel)]="event.movies"
                        id="moviesFld2"
                        class="form-control wbdv-password-fld"
                        placeholder="Movies to be played event">
@@ -248,7 +276,7 @@
                 Time </label>
               <div class="col-sm-10">
                 <input [ngModelOptions]="{standalone: true}"
-                       [(ngModel)]="time"
+                       [(ngModel)]="event.time"
                        id="timeFld2"
                        class="form-control wbdv-password-fld"
                        placeholder="Event time">
@@ -260,7 +288,7 @@
                 Date </label>
               <div class="col-sm-10">
                 <input [ngModelOptions]="{standalone: true}"
-                       [(ngModel)]="date"
+                       [(ngModel)]="event.date"
                        id="dateFld2"
                        class="form-control wbdv-password-fld"
                        placeholder="Date of event">
@@ -272,7 +300,7 @@
                 Location </label>
               <div class="col-sm-10">
                 <input [ngModelOptions]="{standalone: true}"
-                       [(ngModel)]="location"
+                       [(ngModel)]="event.location"
                        id="locationFld2"
                        class="form-control wbdv-password-fld"
                        placeholder="Event's Location">
@@ -284,7 +312,7 @@
                 Max Tickets </label>
               <div class="col-sm-10">
                 <input [ngModelOptions]="{standalone: true}"
-                       [(ngModel)]="maxTickets"
+                       [(ngModel)]="event.maxTickets"
                        id="ticketsFld2"
                        class="form-control wbdv-password-fld"
                        placeholder="Max Tickets for event">
@@ -294,7 +322,7 @@
 
             <button id="updateBtn"
                     [hidden] = !updateMode
-                    (click)="updateEvent(eventName, maxTickets, date, location, movies, time)"
+                    (click)="updateEvent()"
                     class="btn btn-success"
                     style="margin-left:0%; width: 100%;">
               Update Event
@@ -315,37 +343,19 @@
 
 
         <h2 style="color: darkorange;" class="font-weight-bold"> My Events </h2>
-        <ul class="list-group rounded py-1 my-1" style="width: 18rem">
-          <!--<li *ngFor="let course of courses"-->
-          <!--class="list-group-item shadow rounded my-2"-->
-          <!--(click)="selectCourse(course.id, course.title)"-->
-          <!--[ngClass]="{'active': course.id === selectedCourseId}">-->
-          <!--<span style="font-size: large; color:dodgerblue;"> </span>{{course.title}}-->
-          <!--&lt;!&ndash;<button class="float-right btn btn-outline-primary float-right"&ndash;&gt;-->
-          <!--&lt;!&ndash;routerLink="/course/{{course.id}}/section">View Sections</button>&ndash;&gt;-->
-          <!--&lt;!&ndash;(click)="showSections(section)"&ndash;&gt;-->
-          <!--</li>-->
-          <li class="list-group-item shadow rounded my-3">
-            <a routerLink="/dashboard-host/5"> Event 5 Name </a>
+        <ul class="list-group rounded py-1 my-1" style="width: 36rem">
+          <li *ngFor="let e of myevents"
+          class="list-group-item shadow rounded my-2">
+          <a routerLink="/dashboard-host/{{e._id}}">
+            <span style="font-size: large; color:dodgerblue;">
+              {{e.name}}</span>
+          </a>
             <button
-                    class="float-right btn btn-outline-primary float-right">
+              class="float-right btn btn-outline-primary float-right"
+            (click)="deleteEvent(e._id)">
               <i class="fa fa-trash"></i></button>
           </li>
 
-          <li class="list-group-item shadow rounded my-2">
-            <a routerLink="/dashboard-host/2"> Event 2 Name  </a>
-
-          </li>
-
-          <li class="list-group-item shadow rounded my-2">
-            <a routerLink="/dashboard-host/3"> Event 3 Name  </a>
-
-          </li>
-
-          <li class="list-group-item shadow rounded my-2">
-            <a routerLink="/dashboard-host/4"> Event 4 Name  </a>
-
-          </li>
         </ul>
 
       </div>

@@ -6,5 +6,5 @@ export class MovieEvent {
   time: string;
   location: string;
   maxTickets : string;
-  hostId : string;
+  user : string;
 }

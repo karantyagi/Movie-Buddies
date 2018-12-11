@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {MovieEvent} from '../../models/movieEvent.model.client';
 import {MovieListingService} from '../../services/movie-listing.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {User} from '../../models/user.model.client';
+import {UserService} from '../../services/user.service';
+import {EventService} from '../../services/event.service';
+import {MovieDetail} from '../../models/movieDetail.model.client';
+import {MovieService} from '../../services/movie.service';
 
 @Component({
   selector: 'app-host-dashboard',
@@ -18,11 +23,20 @@ export class HostDashboardComponent implements OnInit {
   date  = '';
   location = '';
   time = '';
+  eventMoviesList = '';
   movies = '';
   event: MovieEvent = new MovieEvent();
   eventId = '1';
+  myevents: MovieEvent[] = [];
+  requestedMovies:MovieDetail[] = [];
 
-  constructor(private route: ActivatedRoute) {
+  user: User = new User();
+
+  constructor(private userService: UserService,
+              private eventService: EventService,
+              private movieService: MovieService,
+              private router: Router, private route: ActivatedRoute) {
+    this.sessionCheck();
     this.route.params.subscribe(param => {
        console.log('PARAMS: ', param);
        if(param.eventId === undefined){
@@ -35,6 +49,7 @@ export class HostDashboardComponent implements OnInit {
          this.getEventDetail(this.eventId);
        }
     });
+
   }
 
   cancel() {
@@ -45,26 +60,49 @@ export class HostDashboardComponent implements OnInit {
     this.updateMode = false;
   }
 
-  updateEvent(eventName, maxTickets, date, location, movies, time) {
+  updateEvent() {
     this.updateMode = false;
+    // console.log('UPDATE....', this.event);
+    this.eventService.updateEvent(this.event['_id'], this.event)
+      .then( (result) => {
+        alert('Event Updated!');
+        this.router.navigate(['/dashboard-host']);
+      });
   }
 
 
-  createEvent(eventName, maxTickets, date, location, movies, time) {
+  createEvent() {
     this.addMode = false;
+    this.event.user = this.user['_id'];
+    console.log('ADDING...', this.event);
+    this.eventService.createEvent(this.event)
+      .then( (result) => {
+        this.sessionCheck();
+        // this.router.navigate(['/dashboard-host']);
+      });
+  }
+
+  deleteEvent(id){
+    this.eventService.deleteEvent(id)
+      .then( (result) => {
+        this.sessionCheck();
+      });
   }
 
   getEventDetail(eventId){
     console.log(" getEventDetails() = Get event by ID");
-    this.eventName = 'Movie night';
-    this.date = '2018-Dec-15'
-    this.location = '#30B Saint Alphonsus Street';
-    this.time = '7:00 p.m.';
-    this.movies = 'Venom, A star is Born';
-    this.maxTickets = '15';
+    this.eventService.findEventById(eventId)
+      .then( (result) =>
+      {
+        this.event = result[0];
+      })
+
   }
 
   sessionCheck() {
+    this.requestedMovies = [];
+    this.event.movies = '';
+    this.myevents = [];
     this.userService.findLoggedUser().then((user) => {
       if(user['username'] == 'No session maintained'){
         console.log("User not in session")
@@ -73,8 +111,26 @@ export class HostDashboardComponent implements OnInit {
         console.log('User in session : ', user['username']);
         console.log('ROLE : ', user['role']);
         this.user = user;
+        this.eventService.findEventByUserId(this.user['_id'])
+          .then ( (results) => {
+            console.log('My EVENTS : ', results);
+            this.myevents = results;
+            this.movieService.findAllMovies()
+              .then( (result) => {
+                console.log('all REQUESTED MOVIES : ', result);
+                this.requestedMovies = result;
+              })
+          });
       }
     });
+  }
+
+  addMovie(m){
+    this.event.movies = this.event.movies + m.title + ', ';
+  }
+
+  removeMovie(m){
+    this.event.movies = this.event.movies.replace(m.title+', ', '');
   }
 
   logout() {

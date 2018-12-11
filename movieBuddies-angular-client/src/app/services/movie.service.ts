@@ -71,6 +71,21 @@ export class MovieService {
     });
   }
 
+
+  findAllMovies() {
+    // console.log('in here');
+    return fetch(this.url, {
+      credentials: 'include'
+    }).then(response => {
+      if (response.headers.get('content-type') != null) {
+        return response.json();
+      } else {
+        return null;
+      }
+    });
+  }
+
+
 }
 
 
