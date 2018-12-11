@@ -9,11 +9,6 @@ export class BookingService {
 
   constructor() {
     let base = 'http://localhost:5500';
-    // if (!location.toString().includes('localhost')) {
-    //   base = 'https://job-portal-server.herokuapp.com';
-    // } else {
-    //   base = 'http://localhost:5500';
-    // }
     this.url = base + '/api/booking';
   }
 
