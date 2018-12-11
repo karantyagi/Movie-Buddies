@@ -55,14 +55,7 @@ export class GuestDashboardComponent implements OnInit {
     this.sessionCheck();
   }
 
-  // getBookingDetail(id) {
-  //   console.log(" getEventDetails() = Get event by ID");
-  //   this.bookingService.findBookingById(id)
-  //     .then( (result) => {
-  //       this.updateBooking = result;
-  //       console.log('bind booking : ', this.updateBooking)
-  //     });
-  // }
+ 
 
 
 
