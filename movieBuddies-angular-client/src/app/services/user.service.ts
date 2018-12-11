@@ -23,11 +23,7 @@ export class UserService {
 
   constructor() {
     let base = 'http://localhost:5500';
-    // if (!location.toString().includes('localhost')) {
-    //   base = 'https://job-portal-server.herokuapp.com';
-    // } else {
-    //   base = 'http://localhost:5500';
-    // }
+    
     this.url = base + '/api/user';
     this.urlRegister = base + '/api/register';
     this.urlLoggedUser = base + '/api/profile';
@@ -220,38 +216,7 @@ export class UserService {
   }
 
 
-  // sendPasswordResetEmail(emailId, pageLink, callback) {
-  //   return fetch(this.urlPassReset, {
-  //     method: 'POST',
-  //     body: emailId + ' ' + pageLink,
-  //     // headers: {
-  //     //     'content-type': 'application/json'
-  //     // }
-  //   }).then(callback);
-  // }
-  //
-  // verifyUser(username, callback) {
-  //   return fetch(this.urlVerifyUsername + '/' + username).then(response => {
-  //     if (response.headers.get('content-type') != null) {
-  //       return response.json();
-  //     } else {
-  //       return null;
-  //     }
-  //   }).then(callback);
-  // }
-  //
-  // createUser(user) {
-  //   console.log(user);
-  //   return fetch(this.url, {
-  //     method: 'post',
-  //     body: JSON.stringify(user),
-  //     headers: {
-  //       'content-type': 'application/json'
-  //     }
-  //
-  //   }).then(response => response.json());
-  // }
-  //
+  
 
   findUserById(id){
     console.log('test pass');
@@ -266,22 +231,6 @@ export class UserService {
     });
   }
 
-  //
-  //
-  // updateUser(userId, user, callback) {
-  //   return fetch(this.url + '/' + userId, {
-  //     method: 'PUT',
-  //     body: JSON.stringify(user),
-  //     headers: {
-  //       'content-type': 'application/json'
-  //     }
-  //   }).then(response => response.json()).then(callback);
-  // }
-  //
-  // deleteUser(userId, callback) {
-  //   return fetch(this.url + '/' + userId, {
-  //     method: 'DELETE',
-  //   }).then(callback);
-  // }
+
 
 }
