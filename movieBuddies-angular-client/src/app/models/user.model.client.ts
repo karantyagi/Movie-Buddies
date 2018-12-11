@@ -8,6 +8,6 @@ export class User {
   role: string;
   requestStatus: string;
   premiumRequestStatus: string;
-  follows: [string];
+  follows: string[];
 }
 

@@ -10,8 +10,8 @@ import {HostProfileComponent} from './components/host-profile/host-profile.compo
 import {AdminComponent} from './components/admin/admin.component';
 import {HostDashboardComponent} from './components/host-dashboard/host-dashboard.component';
 import {GuestDashboardComponent} from './components/guest-dashboard/guest-dashboard.component';
-import {UserDetailComponent} from './user-detail/user-detail.component';
-import {UserListComponent} from './user-list/user-list.component';
+import {UserDetailComponent} from './components/user-detail/user-detail.component';
+import {UserListComponent} from './components/user-list/user-list.component';
 import {EventComponent} from './event/event.component';
 import {EventDetailComponent} from './event-detail/event-detail.component';
 
@@ -28,6 +28,7 @@ const routes: Routes = [
   {path: 'profile-guest', component: GuestProfileComponent},
   {path: 'profile-host', component: HostProfileComponent},
   {path: 'dashboard-guest', component: GuestDashboardComponent},
+  {path: 'dashboard-guest/:bookingId', component: GuestDashboardComponent},
   {path: 'dashboard-host', component: HostDashboardComponent},
   {path: 'dashboard-host/:eventId', component: HostDashboardComponent},
   {path: 'user-list', component: UserListComponent},

@@ -64,6 +64,35 @@ export class HostDashboardComponent implements OnInit {
     this.maxTickets = '15';
   }
 
+  sessionCheck() {
+    this.userService.findLoggedUser().then((user) => {
+      if(user['username'] == 'No session maintained'){
+        console.log("User not in session")
+      }
+      else{
+        console.log('User in session : ', user['username']);
+        console.log('ROLE : ', user['role']);
+        this.user = user;
+      }
+    });
+  }
+
+  logout() {
+    this.user.username = 'No session maintained';
+    this.userService.logout().then(() => this.router.navigate(['/home']))
+      .then(() =>
+        this.userService.findLoggedUser().then((user) => {
+            if(user['username'] == 'No session maintained'){
+              console.log("User not in session")
+            }
+            else{
+              console.log('User in session : ', user['username']);
+              console.log('ROLE : ', user['role']);
+            }
+          }
+        ));
+  }
+
 
 
   ngOnInit() {

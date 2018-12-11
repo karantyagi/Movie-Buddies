@@ -4,6 +4,8 @@ import {ActivatedRoute} from '@angular/router';
 import {EventService} from '../services/event.service';
 import {BookingService} from '../services/booking.service';
 import {UserService} from '../services/user.service';
+import {BookingDetail} from '../models/bookingDetail.model.client';
+import {User} from '../models/user.model.client';
 
 @Component({
   selector: 'app-event-detail',
@@ -15,7 +17,8 @@ export class EventDetailComponent implements OnInit {
   event: MovieEvent;
   booked = false;
   eventId = '';
-  userId = '';
+  user: User = new User();
+
 
   constructor(private eventService: EventService,
               private userService: UserService,
@@ -27,10 +30,7 @@ export class EventDetailComponent implements OnInit {
       this.eventId = param.eventId;
       console.log("Event ID: ", this.eventId);})
     this.fetchEventDetail(this.eventId);
-    this.userService.findLoggedUser()
-      .then( (user) => {
-        this.userId = user['_id'];
-      })
+    this.sessionCheck();
 
   }
 
@@ -52,25 +52,57 @@ export class EventDetailComponent implements OnInit {
   bookEvent(){
     console.log('Create booking with event ID: ', this.event.id);
     this.booked = !this.booked;
-
-
-    // this.bookingService.createBooking(this.event.id)
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
+    let b = new BookingDetail();
+    b.eventId = this.eventId;
+    b.event = this.event;
+    b.user = this.user['_id'];
+    console.log('create booking', b);
+    this.bookingService.createBooking(b)
+      .then((response) => {
+        console.log(response);
+      })
   }
 
 
-  unbookEvent(){
-    console.log('Delete booking for event ID: ', this.event.id);
-    this.booked = !this.booked;
-    // this.bookingService.deleteBooking(this.event.id)
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
+  // unbookEvent(){
+  //   console.log('Delete booking for event ID: ', this.event.id);
+  //   this.booked = !this.booked;
+  //   // this.bookingService.deleteBooking(this.event.id)
+  //   //   .then((response) => {
+  //   //     console.log(response);
+  //   //   })
+  // }
+
+
+
+  sessionCheck() {
+    this.userService.findLoggedUser().then((user) => {
+      if(user['username'] == 'No session maintained'){
+        console.log("User not in session")
+      }
+      else{
+        console.log('User in session : ', user['username']);
+        console.log('ROLE : ', user['role']);
+        this.user = user;
+      }
+    });
   }
 
-
+  logout() {
+    this.user.username = 'No session maintained';
+    this.userService.logout().then(() => this.router.navigate(['/home']))
+      .then(() =>
+        this.userService.findLoggedUser().then((user) => {
+            if(user['username'] == 'No session maintained'){
+              console.log("User not in session")
+            }
+            else{
+              console.log('User in session : ', user['username']);
+              console.log('ROLE : ', user['role']);
+            }
+          }
+        ));
+  }
 
 
   ngOnInit() {

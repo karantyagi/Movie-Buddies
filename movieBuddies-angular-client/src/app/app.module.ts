@@ -17,8 +17,8 @@ import { MovieDetailComponent } from './components/movie-detail/movie-detail.com
 import { RegisterComponent } from './components/register/register.component';
 import {UserService} from './services/user.service';
 import {MovieListingService} from './services/movie-listing.service';
-import { UserListComponent } from './user-list/user-list.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { EventComponent } from './event/event.component';
 import { EventDetailComponent } from './event-detail/event-detail.component';
 import {EventService} from './services/event.service';
