@@ -15,7 +15,7 @@
         <h4 style="font-weight: bold; color: rebeccapurple;">Host Rating : {{host.rating}} </h4>
 
         <div class="alert alert-danger" *ngIf="user==null">
-          Please login as Guest to request movies
+          Please login to book tickets for this event.
         </div>
         <button [hidden]=booked [disabled]="user==null" type="button"
                 class="btn btn-outline-success btn-lg mb-4"

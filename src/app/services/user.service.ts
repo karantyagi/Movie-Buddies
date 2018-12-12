@@ -92,7 +92,7 @@ export class UserService {
     return fetch(this.urlLoggedUser, {
       credentials: 'include',
     }).then(response => {
-        return response.json();
+      return response.json();
     });
   }
 
@@ -152,7 +152,7 @@ export class UserService {
   }
 
   createUser(user) {
-    return fetch(this.url , {
+    return fetch(this.url, {
       method: 'POST',
       body: JSON.stringify(user),
       credentials: 'include',
@@ -271,7 +271,7 @@ export class UserService {
   // }
   //
 
-  findUserById(id){
+  findUserById(id) {
     console.log('test pass');
     return fetch(this.url + '/' + id, {
       credentials: 'include',
@@ -284,17 +284,24 @@ export class UserService {
     });
   }
 
-  //
-  //
-  // updateUser(userId, user, callback) {
-  //   return fetch(this.url + '/' + userId, {
-  //     method: 'PUT',
-  //     body: JSON.stringify(user),
-  //     headers: {
-  //       'content-type': 'application/json'
-  //     }
-  //   }).then(response => response.json()).then(callback);
-  // }
+  updateUser(user){
+    return fetch(this.url, {
+      method: 'PUT',
+      body: JSON.stringify(user),
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      }
+    }).then(response => {
+      if (response.headers.get('content-type') != null) {
+        return response.json();
+      } else {
+        return null;
+      }
+    });
+}
+
+
   //
   // deleteUser(userId, callback) {
   //   return fetch(this.url + '/' + userId, {

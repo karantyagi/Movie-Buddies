@@ -70,7 +70,7 @@ export class AdminComponent implements OnInit {
     this.updateUserObj.password = this.password;
     this.updateUserObj.role = this.role;
     this.toggleUpdate = !this.toggleUpdate;
-    this.userService.updateUserProfile(this.updateUserObj).then(() => this.findAllUsers()).then(() => this.toggleUpdate = !this.toggleUpdate );
+    this.userService.updateUser(this.updateUserObj).then(() => this.findAllUsers()).then(() => this.toggleUpdate = !this.toggleUpdate );
   }
 
   createUser(username, password) {

@@ -15,7 +15,7 @@
           <h5 class="card-title"> Release Date : {{movie.release_date}}</h5>
           <div>
             <div class="alert alert-danger" *ngIf="user==null">
-              Please login as Guest to request movies
+              Please login to request this movie.
             </div>
           <button *ngIf="!requested " [disabled]="user==null" type="button" class="btn btn-outline-success btn-lg mb-4" (click)="requestMovie()">
             Request movie </button>
