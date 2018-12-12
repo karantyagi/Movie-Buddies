@@ -1,0 +1,77 @@
+
+<!--main content-->
+
+<div class="container-fluid">
+  <!--<div style="margin: 5px; padding: 15px;" >-->
+  <div class="p-5 mt-5">
+    <!--<h2 style="color: #0069d9;">Guest Dashboard</h2>-->
+    <div>
+      <br/>
+          <div class="container mx-1">
+            <h2 class="font-weight-bold" style="color: green">
+              Movie Buffs</h2>
+            <ul class="list-group rounded py-1 my-1" style="width: 18rem">
+              <li *ngFor="let guest of guestusers"
+              class="list-group-item shadow rounded my-2">
+              <span style="font-size: large; color:dodgerblue;"> </span>{{guest.username}}
+
+                <button
+                  [hidden] = "followsUser(guest._id)"
+                  class="btn btn-outline-primary float-right"
+                (click)="updateFollowing(guest._id)">Follow
+                </button>
+                <button
+                  [hidden] = "!followsUser(guest._id)"
+                  class="btn btn-outline-primary float-right" [disabled]="true">
+                  Following
+                </button>
+              </li>
+
+            </ul>
+            <br/>
+          </div>
+          <!--<div class="col-7 mx-1">-->
+            <!--<h2 style="color: purple" class="text-center font-weight-bold">Movies Requested by User</h2>-->
+            <!--<div>-->
+
+              <!--&lt;!&ndash;list of movies&ndash;&gt;-->
+
+              <!--<ul class="list-group rounded py-1 my-1" style="width: 50rem">-->
+                <!--&lt;!&ndash;<li *ngFor="let course of courses"&ndash;&gt;-->
+                <!--&lt;!&ndash;class="list-group-item shadow rounded my-2"&ndash;&gt;-->
+                <!--&lt;!&ndash;(click)="selectCourse(course.id, course.title)"&ndash;&gt;-->
+                <!--&lt;!&ndash;[ngClass]="{'active': course.id === selectedCourseId}">&ndash;&gt;-->
+                <!--&lt;!&ndash;<span style="font-size: large; color:dodgerblue;"> </span>{{course.title}}&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash;<button class="float-right btn btn-outline-primary float-right"&ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash;routerLink="/course/{{course.id}}/section">View Sections</button>&ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash;(click)="showSections(section)"&ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                <!--<li class="list-group-item shadow rounded my-2">-->
+                  <!--movie 1-->
+                <!--</li>-->
+
+                <!--<li class="list-group-item shadow rounded my-2">-->
+                  <!--movie 2-->
+                <!--</li>-->
+
+                <!--<li class="list-group-item shadow rounded my-2">-->
+                  <!--movie 3-->
+                <!--</li>-->
+
+                <!--<li class="list-group-item shadow rounded my-2">-->
+                  <!--movie 4-->
+                <!--</li>-->
+              <!--</ul>-->
+
+
+            <!--</div>-->
+
+
+          <!--</div>-->
+    </div>
+  </div>
+</div>
+
+
+<app-footer></app-footer>
+

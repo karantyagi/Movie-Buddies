@@ -1,0 +1,32 @@
+<div class="p-5 mt-5">
+
+  <h1 class="text-center font-weight-bold">{{movie.title}}</h1>
+  <div class="container col-8">
+    <div class="card text-center shadow-lg rounded" style="background-color: #e3f2fd;">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-5">
+            <img src="{{url}}" alt="Poster not available." class="shadow rounded border border-white mb-2">
+          </div>
+          <div class="col-1"></div>
+        <div class="col-6 text-left">
+          <h4 class="card-title"> Rating : {{movie.rating}}</h4>
+          <p class="card-text mb-2">{{movie.overview}}</p>
+          <h5 class="card-title"> Release Date : {{movie.release_date}}</h5>
+          <div>
+            <div class="alert alert-danger" *ngIf="user==null">
+              Please login as Guest to request movies
+            </div>
+          <button *ngIf="!requested " [disabled]="user==null" type="button" class="btn btn-outline-success btn-lg mb-4" (click)="requestMovie()">
+            Request movie </button>
+          <button *ngIf="requested" [disabled]="user==null" type="button" class="disabled btn btn-primary btn-lg mb-4">Movie Requested</button>
+          </div>
+          <a class="card-title" href="{{movie.homepage_url}}">Click here for movie website</a>
+        </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <br/>
+</div>
+<app-footer></app-footer>
