@@ -18,7 +18,7 @@ export class EventDetailComponent implements OnInit {
   booked = false;
   eventId = '';
   user: User;
-
+  host: User = new User();
 
   constructor(private eventService: EventService,
               private userService: UserService,
@@ -45,7 +45,13 @@ export class EventDetailComponent implements OnInit {
         this.event.time = response[0]['time'];
         this.event.date = response[0]['date'];
         this.event.id = response[0]['id'];
-        console.log(this.event);
+        this.event.user = response[0]['user'];
+        this.userService.findUserById(this.event.user)
+          .then((result) => {
+            console.log('HOST ----> ', result);
+            this.host = result;
+          });
+        // console.log("EVENT >>", this.event);
       })
   }
 
@@ -55,6 +61,7 @@ export class EventDetailComponent implements OnInit {
     let b = new BookingDetail();
     b.eventId = this.eventId;
     b.event = this.event;
+    b.tickets = '1';
     b.user = this.user['_id'];
     console.log('create booking', b);
     this.bookingService.createBooking(b)

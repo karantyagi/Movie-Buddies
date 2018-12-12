@@ -65,7 +65,7 @@ export class HostDashboardComponent implements OnInit {
     // console.log('UPDATE....', this.event);
     this.eventService.updateEvent(this.event['_id'], this.event)
       .then( (result) => {
-        alert('Event Updated!');
+        // alert('Event Updated!');
         this.router.navigate(['/dashboard-host']);
       });
   }

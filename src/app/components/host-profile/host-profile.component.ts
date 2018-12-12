@@ -20,7 +20,7 @@ export class HostProfileComponent implements OnInit {
     this
       .userService.updateUserProfile(this.user)
       .then(() => {
-        alert('Profile updated !');
+        // alert('Profile updated !');
       });
   }
 

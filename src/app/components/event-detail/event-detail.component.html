@@ -10,6 +10,10 @@
         <hr/>
         <h4 class="card-title"> Movies to enjoy at the event</h4>
         <h2 style="color: dodgerblue"><b>{{event.movies}} </b></h2>
+        <hr/>
+        <h3 style="font-weight: bold; color: purple;">Host Name : {{host.firstName}} {{host.lastName}}</h3>
+        <h4 style="font-weight: bold; color: rebeccapurple;">Host Rating : {{host.rating}} </h4>
+
         <div class="alert alert-danger" *ngIf="user==null">
           Please login as Guest to request movies
         </div>

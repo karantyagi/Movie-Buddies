@@ -9,5 +9,6 @@ export class User {
   requestStatus: string;
   premiumRequestStatus: string;
   follows: string[];
+  rating: string;
 }
 
