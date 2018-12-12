@@ -1,4 +1,5 @@
-## Database Management Systems - CS5200 - Fall 2018 | Final Project | Northeastern University, Boston
+## Final Project | Database Management Systems - CS5200 
+## Fall 2018 | Northeastern University, Boston
 
 ---
 
