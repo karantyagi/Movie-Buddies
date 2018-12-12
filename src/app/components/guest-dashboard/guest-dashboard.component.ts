@@ -152,8 +152,10 @@ export class GuestDashboardComponent implements OnInit {
         ));
   }
 
-  updateUnfollowing(guest, guestId){
-      this.user.follows.filter( (iD) => iD == guestId);
+  updateUnfollowing(guestId){
+    console.log('Unfollow >>>>> ...........', guestId);
+    this.user.follows = this.user.follows.filter( (id) => id !== guestId);
+    console.log('After Unfollowing arry is >>>>> ...........', this.user.follows);
       this.userService.updateUserProfile(this.user)
         .then( (result) => {
           this.sessionCheck();
