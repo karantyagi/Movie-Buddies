@@ -1,4 +1,4 @@
-## Database Management Systems CS5200 - Fall 2018
+## Database Management Systems - CS5200 - Fall 2018 | Final Project | Northeastern University, Boston
 
 ---
 
@@ -26,7 +26,7 @@ Repository for Final Project for CS5200- Database Management Systems course, tau
 ---
 
 ## Documentation
-Read more about our application in the __[wiki ](https://github.com/karantyagi/movieBuddies/wiki)__
+Read more about our application in the __[wiki](https://github.com/karantyagi/movieBuddies/wiki)__.
 
 
 
