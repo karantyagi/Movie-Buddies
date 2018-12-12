@@ -54,6 +54,8 @@
                   <span style="font-weight: bold; font-size: x-large; color:dodgerblue;">{{b.event.name}}</span>
                   </a>
                   <br/>
+                  <span style="font-size: large; color:dodgerblue;">Host Name : {{host.firstName}} {{host.lastName}}</span>
+                  <br/>
                   <span style="font-size: large; color:dodgerblue;">Event Date : {{b.event.date}}</span>
                   <br/>
                   <span style="font-size: large; color:dodgerblue;">Tickets : {{b.tickets}}</span>
@@ -90,8 +92,35 @@
               </button>
 
             </form>
+
+            <hr/>
+
+
+            <h2 style="color: purple" class="text-center font-weight-bold">Rate your Host</h2>
+            <form>
+
+              <div class="form-group row ">
+                <label for="rating" class="col-form-label ml-5 px-2" style="width: 12%">Rating</label>
+                <div>
+                  <input [(ngModel)]="host.rating" [ngModelOptions]="{standalone: true}"
+                         type="text" class="form-control" id="rating" placeholder="Rating scale : 1 to 5" value="">
+                </div>
+              </div>
+              <button (click)="updateGuestRating()"
+                      class="btn btn-primary" style="margin-left:4%; width: 96%">
+                Update Rating
+              </button>
+
+            </form>
+
+
+
+
           </div>
         </div>
+
+
+
       </div>
       <hr/>
       <div>

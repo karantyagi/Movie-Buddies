@@ -109,6 +109,24 @@ export class UserService {
     });
   }
 
+  updateUserById(user, id) {
+    return fetch(this.url + '/' + id, {
+      method: 'PUT',
+      body: JSON.stringify(user),
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      }
+    }).then(response => {
+      if (response.headers.get('content-type') != null) {
+        return response.json();
+      } else {
+        return null;
+      }
+    });
+  }
+
+
   updateUserProfile(user) {
     return fetch(this.urlUpdateProfile, {
       method: 'PUT',

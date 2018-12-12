@@ -25,6 +25,7 @@ export class GuestDashboardComponent implements OnInit {
   bookingId ='';
   updateBooking :BookingDetail = new BookingDetail();
   updateMode = false;
+  host: User;
 
 
   constructor(private userService: UserService,
@@ -32,6 +33,7 @@ export class GuestDashboardComponent implements OnInit {
               private bookingService: BookingService,
               private eventService: EventService,
               private router: Router, private route: ActivatedRoute) {
+    this.host = new User();
     this.movies = [];
     this.bookings = [];
     this.guestusers = [];
@@ -48,6 +50,10 @@ export class GuestDashboardComponent implements OnInit {
           .then((result) => {
             console.log('RESULT :', result);
             this.updateBooking = result[0];
+            this.userService.findUserById(this.updateBooking.event.user)
+              .then( (result) => {
+                this.host = result;
+              });
             console.log('tickets binded : ', this.updateBooking.tickets);
           });
       }
@@ -167,7 +173,12 @@ export class GuestDashboardComponent implements OnInit {
   }
 
 
-
+updateGuestRating(){
+    this.userService.updateUserById(this.host, this.host.id)
+      .then( (result => {
+        console.log(result);
+      }));
+}
 
 
 
