@@ -30,12 +30,9 @@ export class AdminComponent implements OnInit {
   toggleUpdate = true;
 
   ngOnInit() {
-    // this.fetchPendingUser();
   }
 
-  // fetchPendingUser() {
-  //   this.userService.findPendingRecruiters().then((user) => this.users = user).then(() => this.findAllUsers());
-  // }
+  
 
   findAllUsers() {
     this.userService.findAllUsers().then((users) => {
