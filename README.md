@@ -1,8 +1,3 @@
-## Final Project | Database Management Systems - CS5200 
-## Fall 2018 | Northeastern University, Boston
-
----
-
 # `Movie Buddies`
 A Web App for organizing and attending movie parties.
 
@@ -15,7 +10,10 @@ Users can also browse recent or old movies from a movie Database ([The Movie DB]
 ---
 
 ## Purpose
-Repository for Final Project for CS5200- Database Management Systems course, taught by Prof. Jose Annunziato, at Northeastern University.
+
+Repository for Final Project for CS5200- Database Management Systems <br>
+Develpoed under the guidance of Prof. Jose Annunziato <br>
+Northeastern University - Fall 2018. <br>
 
 ---
 
