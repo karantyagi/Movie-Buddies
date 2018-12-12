@@ -3,12 +3,15 @@
 # `Movie Buddies`
 A Web App for organizing and attending movie parties.
 
+
+
 ## Purpose
 Repository for Final Project for CS5200- Database Management Systems course, taught by Prof. Jose Annunziato, at Northeastern University.
 
 ## Links
 
-- Link : Coming soon ...
+
+https://movie-buddies-client.herokuapp.com/home
 
 ## Documentation
 - Check __[wiki](https://github.com/karantyagi/movieBuddies/wiki)__
